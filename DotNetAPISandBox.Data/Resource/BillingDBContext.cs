@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DotNetAPISandBox.Domain.Entity;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetAPISandBox.Data.Resource
 {
     public class BillingContext : DbContext
     {
         public const string ConnectionString = "name=Billing";
+
+        public DbSet<FunctionStatusEntity> functionStatusEntities { get; set; }
+
         public BillingContext() : this(ConnectionString)
         {
 
@@ -25,6 +24,8 @@ namespace DotNetAPISandBox.Data.Resource
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<FunctionStatusEntity>().HasKey(t => new { t.FunctionStatusId });
+
         }
     }
 }
