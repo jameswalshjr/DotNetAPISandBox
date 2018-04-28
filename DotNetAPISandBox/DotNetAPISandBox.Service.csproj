@@ -193,6 +193,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Maintenance\v1\MaintenanceController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -259,6 +260,10 @@
     <ProjectReference Include="..\DotNetAPISandBox.Domain\DotNetAPISandBox.Domain.csproj">
       <Project>{2C23C079-6303-4F33-885A-4349AE2CB465}</Project>
       <Name>DotNetAPISandBox.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetAPISandBox.Engine\DotNetAPISandBox.Engine.csproj">
+      <Project>{A97F1C26-1393-48E4-9E64-169574D4EAA1}</Project>
+      <Name>DotNetAPISandBox.Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

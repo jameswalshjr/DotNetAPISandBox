@@ -1,10 +1,11 @@
 ﻿using DotNetAPISandBox.Data.Interface;
 using DotNetAPISandBox.Domain.Dto;
-using System;
+using DotNetAPISandBox.Domain.Entity;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using AutoMapper.QueryableExtensions;
+using AutoMapper;
 
 namespace DotNetAPISandBox.Data.Repository
 {
@@ -21,9 +22,9 @@ namespace DotNetAPISandBox.Data.Repository
         {
             using (var unitOfWork = unitOfWorkFactory.Create())
             {
-                var functions = await unitOfWork.Repository().FindAsync<FunctionStatus>();
+                var functions = await unitOfWork.Repository().FindAsync<FunctionStatusEntity>();
 
-                return functions.ToList() ;
+                return functions.Select(Mapper.Map<FunctionStatus>).ToList();
             }
         }
     }

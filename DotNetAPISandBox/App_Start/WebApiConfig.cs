@@ -5,6 +5,8 @@ using System.Web.Http;
 using DotNetAPISandBox.Data.Interface;
 using DotNetAPISandBox.Data.Repository;
 using DotNetAPISandBox.Data.Resource;
+using DotNetAPISandBox.Engine.Interface;
+using DotNetAPISandBox.Engine.Maintenance;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using SimpleInjector.Lifestyles;
@@ -19,14 +21,19 @@ namespace DotNetAPISandBox
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
+            // Register Engines
+            container.Register<IMaintenanceEngine, MaintenanceEngine>();
+
             // Register Repositories
             container.Register<IMaintenanceRepository, MaintenanceRepository>();
+            container.Register<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
             // Register DB Contexts
             container.Register<BillingContext, BillingContext>(new AsyncScopedLifestyle());
 
             // Register Controller
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
 
             container.Verify();
 

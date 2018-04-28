@@ -40,7 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IMaintenanceEngine.cs" />
+    <Compile Include="Maintenance\MaintenanceEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetAPISandBox.Data\DotNetAPISandBox.Data.csproj">
+      <Project>{B970B05D-9835-4299-A6A3-FCB70AD0C96D}</Project>
+      <Name>DotNetAPISandBox.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetAPISandBox.Domain\DotNetAPISandBox.Domain.csproj">
+      <Project>{2C23C079-6303-4F33-885A-4349AE2CB465}</Project>
+      <Name>DotNetAPISandBox.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

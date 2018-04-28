@@ -1,13 +1,14 @@
 ﻿using DotNetAPISandBox.Domain.Entity;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace DotNetAPISandBox.Data.Resource
 {
     public class BillingContext : DbContext, IDatabaseContext
     {
-        public const string ConnectionString = "name=Billing";
+        public const string ConnectionString = "name=DevSandBox";
 
-        public DbSet<FunctionStatusEntity> functionStatusEntities { get; set; }
+        public DbSet<FunctionStatusEntity> FunctionStatusEntities { get; set; }
 
         public BillingContext() : this(ConnectionString)
         {

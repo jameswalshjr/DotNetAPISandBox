@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DotNetAPISandBox.Domain.Entity
 {
+    [Table("FunctionStatus")]
     public class FunctionStatusEntity
     {
         [Key]
