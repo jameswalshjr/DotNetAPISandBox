@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using DotNetAPISandBox.Data.Interface;
+using DotNetAPISandBox.Data.Repository;
 using DotNetAPISandBox.Data.Resource;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
@@ -16,6 +18,9 @@ namespace DotNetAPISandBox
             // Web API configuration and services
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+
+            // Register Repositories
+            container.Register<IMaintenanceRepository, MaintenanceRepository>();
 
             // Register DB Contexts
             container.Register<BillingContext, BillingContext>(new AsyncScopedLifestyle());

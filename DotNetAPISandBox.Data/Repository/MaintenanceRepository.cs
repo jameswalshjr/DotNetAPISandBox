@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DotNetAPISandBox.Data.Repository
 {
-    public class MaintenanceRepository
+    public class MaintenanceRepository : IMaintenanceRepository
     {
         private readonly IUnitOfWorkFactory unitOfWorkFactory;
 
