@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace DotNetAPISandBox.Data.Resource
 {
-    public class BillingContext : DbContext
+    public class BillingContext : DbContext, IDatabaseContext
     {
         public const string ConnectionString = "name=Billing";
 

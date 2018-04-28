@@ -59,6 +59,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SimpleInjector, Version=4.2.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.2.2\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.WebApi, Version=4.2.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.WebApi.4.2.2\lib\net45\SimpleInjector.Integration.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -246,6 +252,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetAPISandBox.Data\DotNetAPISandBox.Data.csproj">
+      <Project>{B970B05D-9835-4299-A6A3-FCB70AD0C96D}</Project>
+      <Name>DotNetAPISandBox.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotNetAPISandBox.Domain\DotNetAPISandBox.Domain.csproj">
       <Project>{2C23C079-6303-4F33-885A-4349AE2CB465}</Project>
       <Name>DotNetAPISandBox.Domain</Name>
