@@ -32,9 +32,9 @@ namespace DotNetAPISandBox.Data.Repository
             databaseContext.Dispose();
         }
 
-        public Task CommitAsync()
+        public async Task<int> CommitAsync()
         {
-            return databaseContext.SaveChangesAsync();
+            return await databaseContext.SaveChangesAsync();
         }
     }
 }

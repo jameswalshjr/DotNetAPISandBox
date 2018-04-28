@@ -9,6 +9,6 @@ namespace DotNetAPISandBox.Data.Interface
     public interface IUnitOfWork : IDisposable
     {
         IBaseRepository Repository();
-        Task CommitAsync();
+        Task<int> CommitAsync();
     }
 }

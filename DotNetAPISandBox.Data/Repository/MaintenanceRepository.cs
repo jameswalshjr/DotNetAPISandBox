@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
 using AutoMapper;
+using System;
 
 namespace DotNetAPISandBox.Data.Repository
 {
@@ -20,11 +21,38 @@ namespace DotNetAPISandBox.Data.Repository
 
         public async Task<List<FunctionStatus>> GetFunctionStatus()
         {
-            using (var unitOfWork = unitOfWorkFactory.Create())
+            try
             {
-                var functions = await unitOfWork.Repository().FindAsync<FunctionStatusEntity>();
+                using (var unitOfWork = unitOfWorkFactory.Create())
+                {
+                    var functions = await unitOfWork.Repository().FindAsync<FunctionStatusEntity>();
 
-                return functions.Select(Mapper.Map<FunctionStatus>).ToList();
+                    return functions.Select(Mapper.Map<FunctionStatus>).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+           
+        }
+
+        public  async Task<FunctionStatus> AddFunctionStatus(FunctionStatus functionStatus)
+        {
+            try
+            {
+                using (var unitOfWork = unitOfWorkFactory.Create())
+                {
+                    var entity = (FunctionStatusEntity)functionStatus;
+                    var addedStatus = unitOfWork.Repository().Add<FunctionStatusEntity>(entity);
+                    var response = await unitOfWork.CommitAsync();
+                    
+                    return (FunctionStatus)addedStatus;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

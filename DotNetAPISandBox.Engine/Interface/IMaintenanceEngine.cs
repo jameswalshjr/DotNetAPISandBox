@@ -10,5 +10,6 @@ namespace DotNetAPISandBox.Engine.Interface
     public interface IMaintenanceEngine
     {
         Task<IQueryable<FunctionStatus>> GetAllFunctionStatus();
+        Task<FunctionStatus> AddFunctionStatus(FunctionStatus functionStatus);
     }
 }

@@ -33,8 +33,18 @@ namespace DotNetAPISandBox.Engine.Maintenance
             {
                 throw;
             }
-           
-            
+        }
+
+        public async Task<FunctionStatus> AddFunctionStatus(FunctionStatus functionStatus)
+        {
+            try
+            {
+                return functionStatus = await maintRepo.AddFunctionStatus(functionStatus);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

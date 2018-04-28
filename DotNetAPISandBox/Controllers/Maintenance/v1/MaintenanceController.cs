@@ -1,4 +1,5 @@
-﻿using DotNetAPISandBox.Engine.Interface;
+﻿using DotNetAPISandBox.Domain.Dto;
+using DotNetAPISandBox.Engine.Interface;
 using System;
 using System.Linq;
 using System.Net;
@@ -31,6 +32,28 @@ namespace DotNetAPISandBox.Controllers.Maintenance.v1
                 else
                 {
                     return Content(HttpStatusCode.NoContent, String.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPost]
+        [Route("FunctionStatus")]
+        public async Task<IHttpActionResult> AddFunctionStatus([FromBody] FunctionStatus functionStatus)
+        {
+            try
+            {
+                var addedStatus = await maintEngine.AddFunctionStatus(functionStatus);
+                if(addedStatus != null)
+                {
+                    return Ok(addedStatus);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.InternalServerError, "An error has occured and no resource was created");
                 }
             }
             catch (Exception ex)
