@@ -61,5 +61,9 @@ namespace DotNetAPISandBox.Controllers.Maintenance.v1
                 return Content(HttpStatusCode.InternalServerError, ex);
             }
         }
+
+        //[HttpPut]
+        //[Route("FunctionStatus")]
+        //public async Task<IHttpActionResult> UpdateFunctionStatus([FromBody])
     }
 }
