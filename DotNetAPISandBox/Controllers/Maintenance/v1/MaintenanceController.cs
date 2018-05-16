@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace DotNetAPISandBox.Controllers.Maintenance.v1
 {
@@ -20,6 +21,7 @@ namespace DotNetAPISandBox.Controllers.Maintenance.v1
 
         [HttpGet]
         [Route("FunctionStatus")]
+        [ResponseType(typeof(FunctionStatus))]
         public async Task<IHttpActionResult> GetFunctionStatus()
         {
             try
@@ -42,6 +44,7 @@ namespace DotNetAPISandBox.Controllers.Maintenance.v1
 
         [HttpPost]
         [Route("FunctionStatus")]
+        [ResponseType(typeof(FunctionStatus))]
         public async Task<IHttpActionResult> AddFunctionStatus([FromBody] FunctionStatus functionStatus)
         {
             try
@@ -62,8 +65,26 @@ namespace DotNetAPISandBox.Controllers.Maintenance.v1
             }
         }
 
-        //[HttpPut]
-        //[Route("FunctionStatus")]
-        //public async Task<IHttpActionResult> UpdateFunctionStatus([FromBody])
+        [HttpPut]
+        [Route("FunctionStatus")]
+        public async Task<IHttpActionResult> UpdateFunctionStatus([FromBody] FunctionStatusUpdate functionStatusUpdate)
+        {
+            try
+            {
+                var updatedFunction = await maintEngine.UpdateFunctionStatus(functionStatusUpdate);
+                if(updatedFunction != default(FunctionStatus))
+                {
+                    return Ok(updatedFunction);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.NotFound, "No Function Status code was found that met the requested criteria");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.InternalServerError, ex);
+            }
+        }
     }
 }

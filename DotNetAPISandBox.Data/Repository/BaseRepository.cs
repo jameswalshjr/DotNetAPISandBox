@@ -37,9 +37,10 @@ namespace DotNetAPISandBox.Data.Repository
            return _dbContext.Set<T>().Add(dto);
         }
 
-        public void Update<T>(T dto) where T : class
+        public T Update<T>(T dto) where T : class
         {
             _dbContext.Entry(dto).State = EntityState.Modified;
+            return dto;
         }
 
        

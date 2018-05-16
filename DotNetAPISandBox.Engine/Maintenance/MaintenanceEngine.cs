@@ -46,5 +46,47 @@ namespace DotNetAPISandBox.Engine.Maintenance
                 throw;
             }
         }
+
+        public async Task<FunctionStatus> UpdateFunctionStatus(FunctionStatusUpdate functionStatusUpdate)
+        {
+            try
+            {
+                var function = await maintRepo.GetFunctionStatusByName(functionStatusUpdate.FunctionName);
+                if(function != default(FunctionStatus))
+                {
+                    function.EnableFunction = functionStatusUpdate.EnableFunction;
+                    function = await maintRepo.UpdateFunctionStatus(function);
+                    return function;
+                }
+                else
+                {
+                    return default(FunctionStatus);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<FunctionStatus> GetFunctionStatusByName(string functionName)
+        {
+            try
+            {
+                var function = await maintRepo.GetFunctionStatusByName(functionName);
+                if(function != default(FunctionStatus))
+                {
+                    return function;
+                }
+                else
+                {
+                    return default(FunctionStatus);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -8,5 +8,7 @@ namespace DotNetAPISandBox.Data.Interface
     {
         Task<List<FunctionStatus>> GetFunctionStatus();
         Task<FunctionStatus> AddFunctionStatus(FunctionStatus functionStatus);
+        Task<FunctionStatus> GetFunctionStatusByName(string functionName);
+        Task<FunctionStatus> UpdateFunctionStatus(FunctionStatus functionStatus);
     }
 }

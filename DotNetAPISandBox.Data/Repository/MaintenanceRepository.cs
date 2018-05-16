@@ -26,6 +26,7 @@ namespace DotNetAPISandBox.Data.Repository
                 using (var unitOfWork = unitOfWorkFactory.Create())
                 {
                     var functions = await unitOfWork.Repository().FindAsync<FunctionStatusEntity>();
+                    
 
                     return functions.Select(Mapper.Map<FunctionStatus>).ToList();
                 }
@@ -35,6 +36,24 @@ namespace DotNetAPISandBox.Data.Repository
                 throw;
             }
            
+        }
+
+        public async Task<FunctionStatus> UpdateFunctionStatus(FunctionStatus functionStatus)
+        {
+            try
+            {
+                using (var unitOfWork = unitOfWorkFactory.Create())
+                {
+                    var entity = (FunctionStatusEntity)functionStatus;
+                    var updatedStatus = unitOfWork.Repository().Update<FunctionStatusEntity>(entity);
+                    var response = await unitOfWork.CommitAsync();
+                    return (FunctionStatus)updatedStatus;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public  async Task<FunctionStatus> AddFunctionStatus(FunctionStatus functionStatus)
@@ -48,6 +67,30 @@ namespace DotNetAPISandBox.Data.Repository
                     var response = await unitOfWork.CommitAsync();
                     
                     return (FunctionStatus)addedStatus;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<FunctionStatus> GetFunctionStatusByName(string functionName)
+        {
+            try
+            {
+                using (var unitOfWork = unitOfWorkFactory.Create())
+                {
+                    var function = await unitOfWork.Repository().SingleOrDefaultAsync<FunctionStatusEntity>(x => x.FunctionName == functionName);
+                    
+                    if(function !=  null)
+                    {
+                        return (FunctionStatus)function;
+                    }
+                    else
+                    {
+                        return default(FunctionStatus);
+                    }
                 }
             }
             catch (Exception)

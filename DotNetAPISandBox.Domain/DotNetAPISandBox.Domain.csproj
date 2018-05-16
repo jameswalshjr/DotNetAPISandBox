@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\FunctionStatus.cs" />
+    <Compile Include="Dto\FunctionStatusUpdate.cs" />
     <Compile Include="Entity\FunctionStatusEntity.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

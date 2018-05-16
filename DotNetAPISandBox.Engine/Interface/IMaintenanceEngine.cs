@@ -11,5 +11,8 @@ namespace DotNetAPISandBox.Engine.Interface
     {
         Task<IQueryable<FunctionStatus>> GetAllFunctionStatus();
         Task<FunctionStatus> AddFunctionStatus(FunctionStatus functionStatus);
+        Task<FunctionStatus> GetFunctionStatusByName(string functionName);
+        Task<FunctionStatus> UpdateFunctionStatus(FunctionStatusUpdate functionStatusUpdate);
+
     }
 }

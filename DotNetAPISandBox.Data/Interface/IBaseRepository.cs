@@ -13,7 +13,7 @@ namespace DotNetAPISandBox.Data.Interface
        Task<T> SingleOrDefaultAsync<T>(Expression<Func<T, bool>> expression) where T : class;
 
         T Add<T>(T dto) where T : class;
-        void Update<T>(T dto) where T : class;
+        T Update<T>(T dto) where T : class;
 
     }
 }
